@@ -1,5 +1,3 @@
-# cot-indicators.streamlit_app
-
 <H2> Cot Indicators App </H2>
 
 This is my improved version of COT APP, both inspired by the book <em>Trade Stocks and Commodities with the Insiders: Secrets of the COT Report</em> by Larry Wiliams. 
@@ -7,10 +5,26 @@ This is my improved version of COT APP, both inspired by the book <em>Trade Stoc
 ![COT_app](https://github.com/gamaiun/cot-indicators.streamlit_app/blob/main/cot_indicators.JPG)
 The deployed version is available [here](https://gamaiun-cot-financial-app-app-9c911c.streamlit.app/)
 
-**Commitment of Traders** (COT) reports are a set of data that are released by the Commodity Futures Trading Commission (CFTC) on a weekly basis. The reports provide a breakdown of the open positions held by different groups of traders in a variety of futures markets, including commodities, currencies, and Treasury bonds. The groups of traders include commercial hedgers, non-commercial speculators, and small traders. Commercial hedgers are typically large companies or institutions that use futures contracts to hedge against price fluctuations in the underlying physical commodity or financial instrument. Non-commercial speculators are traders who are not using futures contracts for hedging, but rather for speculative purposes. COT reports provide a snapshot of the market sentiment and can be used to help traders identify potential trading opportunities and market trends.
+**Commitment of Traders** reports are a set of data that are released by the Commodity Futures Trading Commission (CFTC) on a weekly basis. The reports provide a breakdown of the open positions held by different groups of traders in a variety of futures markets, including commodities, currencies, and Treasury bonds. The groups of traders include commercial hedgers, non-commercial speculators, and small traders. Commercial hedgers are typically large companies or institutions that use futures contracts to hedge against price fluctuations in the underlying physical commodity or financial instrument. Non-commercial speculators are traders who are not using futures contracts for hedging, but rather for speculative purposes. COT reports provide a snapshot of the market sentiment and can be used to help traders identify potential trading opportunities and market trends.
 
-Our project was inspired by the book <em>Trade Stocks and Commodities with the Insiders: Secrets of the COT Report</em> by Larry Wiliams. Larry Williams is a well-known commodity trader who utilizes Commitment of Traders (COT) reports to generate successful trading strategies. Williams believes that by analyzing these reports, traders can gain insight into the positioning and sentiment of these groups, and use this information to make more informed trading decisions. For example, if commercial hedgers are heavily short, it may indicate that they believe prices will fall, and traders can use this information to enter short positions. Additionally, Williams often looks for extreme positioning by speculators, which can indicate a potential reversal in the market.
+<h4>Overview</h4>
+<p>This application is dedicated to in-depth analysis of the foreign exchange (Forex) markets, with a primary focus on providing valuable insights for long-term swing trading strategies. It combines a blend of well-established indicators and proprietary formulas to offer users a unique perspective on currency pair dynamics and the underlying activities of major financial institutions.</p>
 
-**The WILCO indicator**, short for Williams' Inverse Line Crossover, is a technical indicator developed by Larry Williams. It is used to identify potential buy and sell signals in the market. The indicator is based on the idea that market trends are determined by the actions of large institutional traders and by studying their actions, traders can identify key turning points in the market. The WILCO indicator is calculated by taking the difference between a 10-week rate of change and a 5-week rate of change, and plotting it on a chart. When the indicator crosses above zero, it generates a buy signal, indicating that the market is trending upward. Conversely, when the indicator crosses below zero, it generates a sell signal, indicating that the market is trending downward. The WILCO indicator is often used in conjunction with other technical analysis tools and fundamental analysis to help traders make more informed trading decisions.
+Key Features</h4>
+COT Reports (Commitment of Traders)
+<p>Visual Analysis: Users can access the "COT REPORTS" tab to visually analyze currency pairs, represented through top charts.</p>
 
-**The NETT DEALERS/OI** (Net Dealers/Open Interest) indicator is used to measure the ratio of large traders' positions (also known as "Dealers") in relationship to the total open interest. NETT DEALERS/OI is calculated by subtracting the sum of all short positions held by large traders from the sum of all long positions held by them. The result is then divided by the total open interest in the market. The resulting ratio expresses the proportion of open positions held by large traders that are either long or short. COT analysts use this information to gain insight into the market sentiment and positioning of large traders, which can help them identify potential trading opportunities. 
+<p>Unique Formula: What sets this app apart from online alternatives is the proprietary formula utilized in calculating the traces. For instance, consider the "Dealers' Longs" position for the AUDCAD pair. It is derived from the difference between Australian Dollar Dealers' Long positions and Canadian Dollar Dealers' Long positions. In essence, these indicators portray the cumulative strength of a currency pair, rooted in the actions of what Larry Williams refers to as the "big boys" in the Forex market.</p>
+
+<h4>Indicators</h4>
+<p>The "INDICATORS" tab offers users a set of proprietary formulas displayed on charts, accompanied by currency closing prices at the top. This combination empowers traders with insights that can be critical for informed decision-making.</p>
+<h4>Usage Considerations</h4>
+<p>Long-Term Analysis: It's essential to note that this app is specifically tailored for long-term analysis, catering to the needs of swing traders who typically hold positions for extended periods.</p>
+<h4>Contributing</h4>
+<p>Contributions and feedback are highly encouraged. Please feel free to open issues, submit pull requests, or provide suggestions to help enhance this app's functionality and user experience.</p>
+
+<h4>Legal Considerations</h4>
+<p>Given the financial nature of Forex trading, ensure that your usage complies with all relevant financial regulations and licensing requirements.</p>
+
+License
+This project is licensed under the MIT License.
