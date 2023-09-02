@@ -2,17 +2,17 @@
 # coding: utf-8
 
 import streamlit as st
-import matplotlib.pyplot as plt
 import datetime
 import pandas as pd
 from dash import Dash 
-import plotly.graph_objects as go
-import plotly.express as px
+
+import plotly
+from plotly import graph_objects as go
+# from plotly import express as px
 from plotly.subplots import make_subplots
 import numpy as np
 TODAY = datetime.date.today()
 today_day = TODAY.strftime('%Y-%m-%d')
-
 
 st.set_page_config(layout="wide", page_title="Cot App")
 tab1, tab4, = st.tabs(["COT REPORTS", "INDICATORS"])
