@@ -3,7 +3,7 @@
 This is my improved version of COT APP, both inspired by the book <em>Trade Stocks and Commodities with the Insiders: Secrets of the COT Report</em> by Larry Wiliams. 
 
 ![COT_app](https://github.com/gamaiun/cot-indicators.streamlit_app/blob/main/cot_indicators.JPG)
-The deployed version is available [here](https://gamaiun-cot-financial-app-app-9c911c.streamlit.app/)
+The deployed version is available [here]([https://gamaiun-cot-financial-app-app-9c911c.streamlit.app/](https://gamaiun-cot-app.streamlit.app/))
 
 **Commitment of Traders** reports are a set of data that are released by the Commodity Futures Trading Commission (CFTC) on a weekly basis. The reports provide a breakdown of the open positions held by different groups of traders in a variety of futures markets, including commodities, currencies, and Treasury bonds. The groups of traders include commercial hedgers, non-commercial speculators, and small traders. Commercial hedgers are typically large companies or institutions that use futures contracts to hedge against price fluctuations in the underlying physical commodity or financial instrument. Non-commercial speculators are traders who are not using futures contracts for hedging, but rather for speculative purposes. COT reports provide a snapshot of the market sentiment and can be used to help traders identify potential trading opportunities and market trends.
 
