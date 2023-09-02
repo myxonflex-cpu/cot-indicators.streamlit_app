@@ -1,0 +1,10 @@
+streamlit
+matplotlib.pyplot
+datetime
+pandas
+dash_utils
+dash
+plotly.graph_objects
+plotly.express
+plotly.subplots
+numpy
