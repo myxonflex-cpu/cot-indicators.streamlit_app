@@ -11,8 +11,7 @@ The deployed version is available [here](https://gamaiun-cot-financial-app-app-9
 <p>This application is dedicated to in-depth analysis of the foreign exchange (Forex) markets, with a primary focus on providing valuable insights for long-term swing trading strategies. It combines a blend of well-established indicators and proprietary formulas to offer users a unique perspective on currency pair dynamics and the underlying activities of major financial institutions.</p>
 
 <h4>"COT REPORTS" Tab</h4>
-<p>Visual Analysis: Users can access the "COT REPORTS" tab to visually analyze currency pairs, represented through top charts.
-Unique Formula: What sets this app apart from online alternatives is the proprietary formula utilized in calculating the traces. For instance, consider the "Dealers' Longs" position for the AUDCAD pair. It is derived from the difference between Australian Dollar Dealers' Long positions and Canadian Dollar Dealers' Long positions. In essence, these indicators portray the cumulative strength of a currency pair, rooted in the actions of what Larry Williams refers to as the "big boys" in the Forex market.</p>
+<p> What sets this app apart from online alternatives is the proprietary formula utilized in calculating the traces. For instance, consider the "Dealers' Longs" position for the AUDCAD pair. It is derived from the difference between Australian Dollar Dealers' Long positions and Canadian Dollar Dealers' Long positions. In essence, these indicators portray the cumulative strength of a currency pair, rooted in the actions of what Larry Williams refers to as the "big boys" in the Forex market.</p>
 
 <h4>"INDICATORS" Tab</h4>
 <p>The "INDICATORS" tab offers users a set of proprietary formulas displayed on charts, accompanied by currency closing prices at the top. This combination empowers traders with insights that can be critical for informed decision-making.</p>
