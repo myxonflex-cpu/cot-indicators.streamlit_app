@@ -246,11 +246,7 @@ with tab1:
     st.plotly_chart(fig, use_container_width=True)
 
 
-start_date = "2020-06-20"
-end_date = end_date
-start_date = pd.to_datetime(start_date, format="%Y-%m-%d")
-end_date = pd.to_datetime(end_date, format="%Y-%m-%d")
-mask = (forex_4h.index.get_level_values(1) >= start_date) & (forex_4h.index.get_level_values(1) <= end_date)
+mask = (forex_4h.index.get_level_values(1) >= start_time) & (forex_4h.index.get_level_values(1) <= end_time)
 subset_forex_4h = forex_4h.loc[mask]
 
 with tab4:
