@@ -1,29 +1,82 @@
-<H2> Cot Indicators App </H2>
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+from cot_reports import CotReports
+import datetime as dt
 
-This is my improved version of COT APP, both inspired by the book <em>Trade Stocks and Commodities with the Insiders: Secrets of the COT Report</em> by Larry Wiliams. 
+st.set_page_config(page_title="COT Explorer", layout="wide")
+st.title("Commitment of Traders — Explorer")
 
-![COT_app](https://github.com/gamaiun/cot-indicators.streamlit_app/blob/main/cot_indicators.JPG)
-![COT_app](https://github.com/gamaiun/cot-indicators.streamlit_app/blob/main/cot_indicator2.JPG)
+# Sidebar controls
+st.sidebar.header("Controls")
+report_type = st.sidebar.selectbox("Report Type", 
+                                   ["legacy_futures_only", "legacy_combined", 
+                                    "disaggregated_futures_only", "disaggregated_combined"])
+symbol_input = st.sidebar.text_input("Market / Symbol (full name)", 
+                                     value="EURO FX - CHICAGO MERCANTILE EXCHANGE")
+start_date = st.sidebar.date_input("Start date", value=dt.date.today() - dt.timedelta(days=365*2))
+end_date = st.sidebar.date_input("End date", value=dt.date.today())
 
-The deployed version is available [here](https://gamaiun-cot-app.streamlit.app/)
+# Load COT data
+@st.cache_data(ttl=3600)
+def load_cot(report, market):
+    cr = CotReports()
+    try:
+        df = cr.get_report(report, market)
+        if isinstance(df, dict):
+            df = pd.DataFrame(list(df.values())[0])
+        elif isinstance(df, list):
+            df = pd.DataFrame(df)
+        # Detect date column
+        date_cols = [c for c in df.columns if "date" in c.lower()]
+        if date_cols:
+            df.rename(columns={date_cols[0]: "Date"}, inplace=True)
+            df["Date"] = pd.to_datetime(df["Date"])
+            df = df.sort_values("Date").reset_index(drop=True)
+        return df
+    except Exception as e:
+        st.error(f"Error loading COT data: {e}")
+        return pd.DataFrame()
 
-**Commitment of Traders** reports are a set of data that are released by the Commodity Futures Trading Commission (CFTC) on a weekly basis. The reports provide a breakdown of the open positions held by different groups of traders in a variety of futures markets, including commodities, currencies, and Treasury bonds. The groups of traders include commercial hedgers, non-commercial speculators, and small traders. Commercial hedgers are typically large companies or institutions that use futures contracts to hedge against price fluctuations in the underlying physical commodity or financial instrument. Non-commercial speculators are traders who are not using futures contracts for hedging, but rather for speculative purposes. COT reports provide a snapshot of the market sentiment and can be used to help traders identify potential trading opportunities and market trends.
+if st.sidebar.button("Load Data"):
+    df = load_cot(report_type, symbol_input)
+else:
+    df = pd.DataFrame()
 
-<h4>Overview</h4>
-<p>This application is dedicated to in-depth analysis of the foreign exchange (Forex) markets, with a primary focus on providing valuable insights for long-term swing trading strategies. It combines a blend of well-established indicators and proprietary formulas to offer users a unique perspective on currency pair dynamics and the underlying activities of major financial institutions.</p>
+if df.empty:
+    st.warning("No data loaded. Enter a valid market name and click Load Data.")
+    st.stop()
 
-<h4>"COT REPORTS" Tab</h4>
-<p> What sets this app apart from online alternatives is the proprietary formula utilized in calculating the traces. For instance, consider the "Dealers' Longs" position for the AUDCAD pair. It is derived from the difference between Australian Dollar Dealers' Long positions and Canadian Dollar Dealers' Long positions. In essence, these indicators portray the cumulative strength of a currency pair, rooted in the actions of what Larry Williams refers to as the "big boys" in the Forex market.</p>
+# Column detection (simplified)
+long_col = next((c for c in df.columns if "long" in c.lower()), None)
+short_col = next((c for c in df.columns if "short" in c.lower()), None)
+oi_col = next((c for c in df.columns if "open" in c.lower()), None)
 
-<h4>"INDICATORS" Tab</h4>
-<p>The "INDICATORS" tab offers users a set of proprietary formulas displayed on charts, accompanied by currency closing prices at the top. This combination empowers traders with insights that can be critical for informed decision-making.</p>
-<h4>Usage Considerations</h4>
-<p>Long-Term Analysis: It's essential to note that this app is specifically tailored for long-term analysis, catering to the needs of swing traders who typically hold positions for extended periods.</p>
-<h4>Contributing</h4>
-<p>Contributions and feedback are highly encouraged. Please feel free to open issues, submit pull requests, or provide suggestions to help enhance this app's functionality and user experience.</p>
+if not long_col or not short_col:
+    st.error("Could not detect Long or Short columns. Edit column names manually if needed.")
+    st.stop()
 
-<h4>Legal Considerations</h4>
-<p>Given the financial nature of Forex trading, ensure that your usage complies with all relevant financial regulations and licensing requirements.</p>
+df["Long"] = pd.to_numeric(df[long_col], errors="coerce")
+df["Short"] = pd.to_numeric(df[short_col], errors="coerce")
+df["Net"] = df["Long"] - df["Short"]
+if oi_col:
+    df["OI"] = pd.to_numeric(df[oi_col], errors="coerce")
+    df["Long_pct"] = df["Long"] / df["OI"] * 100
+    df["Short_pct"] = df["Short"] / df["OI"] * 100
+    df["Net_pct"] = df["Net"] / df["OI"] * 100
 
-License
-This project is licensed under the MIT License.
+# Filter by date
+df = df[(df["Date"].dt.date >= start_date) & (df["Date"].dt.date <= end_date)]
+
+# Tabs
+tabs = st.tabs(["Charts", "Table & Export"])
+with tabs[0]:
+    st.subheader("Net Positions")
+    fig = px.line(df, x="Date", y=["Long", "Short", "Net"], title=f"{symbol_input} COT Positions")
+    st.plotly_chart(fig, use_container_width=True)
+
+with tabs[1]:
+    st.subheader("Data Table")
+    st.dataframe(df, use_container_width=True)
+    csv = df.to_csv(index=False)
+    st.download_button("Download CSV", csv, file_name=f"COT_{symbol_input}.csv")
